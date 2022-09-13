@@ -1,0 +1,12 @@
+[package]
+name = "blinky_basic"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+arduino_nano33iot = "0.7.0"
+
+[[bin]]
+name = "blinky_basic"
+path = "src/main.rs"
+
