@@ -1,7 +1,57 @@
 [package]
 name = "blinky_basic"
 version = "0.1.0"
+
+#### Verbatim copy of Cargo.toml from arduino_nano33iot starts here.
+
+authors = ["Gus Wynn <guswynn@gmail.com>"]
+description = "Board Support crate for the Arduino Nano 33 IOT"
+keywords = ["no-std", "arm", "cortex-m", "embedded-hal", "arduino"]
+categories = ["embedded", "hardware-support", "no-std"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/atsamd-rs/atsamd"
+readme = "README.md"
 edition = "2021"
+
+[dependencies.cortex-m-rt]
+version = "0.7"
+optional = true
+
+[dependencies.atsamd-hal]
+version = "0.14"
+default-features = false
+
+[dependencies.usb-device]
+version = "0.2"
+optional = true
+
+[dependencies.rand]
+version = "0.8"
+default-features = false
+features = ["small_rng"]
+
+[dev-dependencies]
+cortex-m = "0.7"
+usbd-serial = "0.1"
+panic-halt = "0.2"
+panic-semihosting = "0.5"
+embedded-graphics = "0.7"
+st7735-lcd = "0.8"
+ssd1306 = { version = "0.7", features = ["graphics"] }
+
+[features]
+# ask the HAL to enable atsamd21g support
+default = ["rt", "atsamd-hal/samd21g"]
+rt = ["cortex-m-rt", "atsamd-hal/samd21g-rt"]
+usb = ["atsamd-hal/usb", "usb-device"]
+unproven = ["atsamd-hal/unproven"]
+use_semihosting = []
+
+# for cargo flash
+[package.metadata]
+chip = "ATSAMD21G18A"
+
+#### Verbatim copy of Cargo.toml from arduino_nano33iot ends here.
 
 [dependencies]
 arduino_nano33iot = "0.7.0"
